@@ -1,46 +1,17 @@
 import React, {useState, useEffect, FormEvent} from 'react'
-import { Typography, Container, CssBaseline, Box, TextField, FormControl, Button, Stack, Snackbar
+import { Typography, Container, CssBaseline, Box, TextField, FormControl, Button, Stack
 , FormControlLabel, Checkbox } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Link from 'next/link';
-import { checkPrimeSync } from 'crypto';
-import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import Copyright from '../components/utils/Copyright';
+import Snackbar from '../components/utils/Snackbar';
 
 
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
-    props,
-    ref,
-  ) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-  });
- 
-
-
-
-type CopyProps = {
-    site: string;
-    sx?: object;
-}
-
-function Copyright(props:CopyProps){
-    return (
-        <Typography>
-            {'Copyright ©️'}
-            <Link color='inherit' href="https://avanade.com.br/">
-            {props.site}
-            </Link>{' '}
-
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    )       
-}
 
 const theme = createTheme();
 
 export default function LoginPage() {
 
-const [empresa, setEmpresa] = useState<string| undefined| null | FormDataEntryValue>('');
+
 const [name, setName] = useState('');
 const [contador, setContador] = useState<number | undefined>(0);
 const [error, setError] = useState<boolean>(false);
@@ -86,9 +57,6 @@ useEffect(() => {
 
 },[password]);
 
-const handleClose =() => {
-    setOpen(false);
-}
 
   // Essa função executa quando envia o formulário 
 const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -103,22 +71,11 @@ const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     setPassword(data.get('password'));
 }
 
-
-
-
-
     return (
     <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
             <CssBaseline />
-
-            <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                 Usuário autenticado com sucesso... aguuarde...
-                </Alert>
-            </Snackbar>
-
-            
+     
             <Box sx={{mt:8, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <Typography component="h1" variant="h5">
                     Login
@@ -141,6 +98,8 @@ const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
                 </Box>
             </Box>
             <Copyright site="www.avanade.com.br" sx={{mt:8, mb: 4}} />
+            
+            {open && <Snackbar open={open} hide={6} message="Usuario autenticado com sucesso... Aguarde..." />}
         </Container>
 
     </ThemeProvider>
