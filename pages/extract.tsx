@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import SideBar from '../components/SideBar';
+import ExtractContent from '../components/ExtractContent';
 
 
 const ExtractContainer = styled.div`
@@ -18,9 +19,10 @@ export default function Extract() {
       <SideBar>
         <section>
           <h1>Extrato</h1>
-          Aquivirá a listagem do Extrato
+          Sair da Conta
         </section>
       </SideBar>
+      <ExtractContent/>
     </ExtractContainer>
   )
 }

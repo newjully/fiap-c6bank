@@ -16,7 +16,7 @@ const BalanceContainer = styled.div`
 
 
 export default function Balance() {
-const [show, setShow] = useState<boolean>(true);
+const [show, setShow] = useState<boolean>(false);
 
 
 
@@ -25,7 +25,7 @@ const [show, setShow] = useState<boolean>(true);
     <BalanceContainer>
         <div>Saldo</div>
         <div>   
-          
+
           {show ? 
             <strong>{ new Intl.NumberFormat('pt-br',{style:'currency', currency:'BRL'}).format(190000)}</strong>
           : <strong>R$ ******,**</strong>
